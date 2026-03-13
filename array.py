@@ -11,3 +11,12 @@ def square():
         print (n*n)
 
 #square()
+
+def mix():
+    num = [1, 2, 3, 4, 5]
+    fruits = ['apple', 'banana', 'mango', 'pineapple', 'cherry']
+    #print (len(fruits))
+    for f, n in zip(fruits, num):
+            print (n,f)
+            print(len(f))
+mix()
