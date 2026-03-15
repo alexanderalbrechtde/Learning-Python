@@ -46,10 +46,18 @@ def greet():
 greet()
 
 
-def upperCase(function):
+def uppercase(function):
     def wrapper():
         result = function()
         return result.upper()
+
+    return wrapper
+
+
+def lowercase(function):
+    def wrapper():
+        result = function()
+        return result.lower()
 
     return wrapper
 
@@ -58,5 +66,31 @@ def greeting():
     return 'hello there'
 
 
-decorator = upperCase(greeting)
+decorator = uppercase(greeting)
 print(decorator())
+
+
+# in the use case of 2 or more decorator, will the nearest to the function be the first one in the order
+@lowercase
+@uppercase
+def greeting2():
+    return 'hello, my name is ALEX  '
+
+
+print(greeting2())
+
+# arguments in decorator are given in the wrapper and to call in the function call at the end
+def arguments(function):
+    def arguments_wrapper(arg1, arg2):
+        print('My arguments are: {0}, {1}'.format(arg1, arg2))
+        function(arg1, arg2)
+
+    return arguments_wrapper
+
+
+@arguments
+def love(love1, love2):
+    print('I love {0} and {1}'.format(love1, love2))
+
+
+love("pizza", "cars")
