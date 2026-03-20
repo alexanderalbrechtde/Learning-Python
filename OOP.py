@@ -21,10 +21,40 @@ print(polo.age)
 
 class Human:
 
-    def __init__(self, name, age, location):
-        self.name = name
-        self.age = age
-        self.location = location
+    def __init__(self, name: str, age: int, location: str) -> None:
+        self.__name = name
+        self.__age = age
+        self.__location = location
+
+    # getter will be decorated with property
+    @property
+    def name(self) -> str:
+        return self.__name
+
+    # and with that the setter will be named with name.setter
+    @name.setter
+    def name(self, name: str):
+        self.__name = name
+
+    def _del_name(self):
+        print('Name wurde gelöscht!')
+        self.__name = ''
+
+    @property
+    def age(self):
+        return self.__age
+
+    @age.setter
+    def age(self, age):
+        self.__age = age
+
+    @property
+    def location(self):
+        return self.__location
+
+    @location.setter
+    def location(self, location):
+        self.__location = location
 
     def description(self):
         return '{0} is {1} years old.'.format(self.name, self.age)
@@ -32,23 +62,11 @@ class Human:
     def language(self, language):
         return '{0} is from {1} and speake {2}.'.format(self.name, self.location, language)
 
-    def set_location(self, location):
-        self.location = location
 
-    def get_name(self):
-        return self.name
+alex = Human('Alex', 21, 'Germany')
 
-    def get_age(self):
-        return self.age
-
-    def get_location(self):
-        return self.location
-
-
-alex = Human('Alex', '21', 'Germany')
-
-alex.set_location('Berlin')
+alex.location = 'Berlin'
 
 print(alex.description())
 print(alex.language('german'))
-print(alex.get_name() + ' is here')
+print(alex.name + ' is here')
