@@ -36,7 +36,8 @@ class Human:
     def name(self, name: str):
         self.__name = name
 
-    def _del_name(self):
+    @name.deleter
+    def name(self):
         print('Name wurde gelöscht!')
         self.__name = ''
 
